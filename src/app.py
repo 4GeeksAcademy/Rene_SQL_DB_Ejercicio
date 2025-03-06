@@ -10,7 +10,11 @@ load_dotenv()
 def connect():
     global engine
     try:
-        connection_string = f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}/{os.getenv('DB_NAME')}"
+        connection_string = (
+    f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}"
+    f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}")
+
+       #connection_string = f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}/{os.getenv('DB_NAME')}"
         print("Starting the connection...")
         engine = create_engine(connection_string, isolation_level="AUTOCOMMIT") 
         engine.connect()
